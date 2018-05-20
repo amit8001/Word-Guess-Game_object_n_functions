@@ -4,7 +4,7 @@ var count;
 var letterGuess;
 var answerArray;
 var clicks_rmg ;
-var randomWord ; //declared globally
+var randomWord ; 
 var win =0; //assigned globally (outside of start fn), so that when starts up retains the win #
 var rd_wd;
 var Undscrs;
@@ -14,7 +14,8 @@ var game = {
       
       //I define a method in which I define an array of words to choose from, the computer will randonly choose from these words
       getRandomWord: function(){
-        var randomWordArr = ["food","pizza","happy","joy","omlette","rice","tacos","pasta","burrito"];
+        var randomWordArr = ["food","pizza","happy","joy","omlette","rice","tacos","pasta","burrito",
+                            "sandwich","yogurt","smoothie","mango","fruit","tomato","healthy","meal"];
         //then choose a random word from the array above, using the globally declared variable "randomWord"
         randomWord = randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
         return randomWord;
@@ -50,8 +51,8 @@ var game = {
 document.onkeyup = function(event) {
 // Determines which key was pressed.
   var userGuess = event.key;
-  console.log("Inside key press");
-  console.log(rd_wd);
+//  console.log("Inside key press");
+//  console.log(rd_wd);
     for (i = 0; i < rd_wd.length; i++){
           if (rd_wd[i] === userGuess){
           //assign that letter to the answerArray in the same position
@@ -61,7 +62,7 @@ document.onkeyup = function(event) {
               document.getElementById("answer").innerHTML = answerArray.join(" ");
             }
     }  
-  console.log("Hi");
+  //console.log("Hi");
   console.log(answerArray);
   //keeps of a count of the attempts for guessing the word
   count++; 
@@ -78,9 +79,9 @@ document.onkeyup = function(event) {
   document.getElementById("guess_alrdy").innerHTML = "Letters Already Guessed: " +letterGuess;
   document.getElementById("clk_rmg").innerHTML = clicks_rmg;
   
-  //below if statement till line#91 checks if the "formed" answer is equal to the randomWord for that iteration, 
+  //below if statement checks if the "formed" answer is equal to the randomWord for that iteration, 
   //if so then call the Start function to restart the game and also increment the win global variable by 1. 
-  //Display the updated win value when a new game restarts
+  //Increase the win value everytime by 1 when a new game restarts
   if (rd_wd === answerArray.join("")){
       game.Startup();
       win++;
