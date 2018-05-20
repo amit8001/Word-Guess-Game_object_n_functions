@@ -41,9 +41,13 @@ h4{
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
-    margin-top: 60px;
+    margin-top: 40px;
     padding-top: 30px;
 }
 #guess_alrdy{
     margin-top: 40px;
+}
+#loss
+{
+    font-size: 25px;
 }

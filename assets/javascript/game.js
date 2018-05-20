@@ -6,6 +6,7 @@ var answerArray;
 var clicks_rmg ;
 var randomWord ; 
 var win =0; //assigned globally (outside of start fn), so that when starts up retains the win #
+var losses =0; //assigned globally (outside of start fn), so that when starts up retains the loss #
 var rd_wd;
 var Undscrs;
 
@@ -44,6 +45,7 @@ var game = {
         document.getElementById("clk_rmg").innerHTML = clicks_rmg;
         document.getElementById("guess_alrdy").innerHTML = "Letters already guessed: " +letterGuess;
         document.getElementById("wins").innerHTML = "Wins: "+win;
+        document.getElementById("loss").innerHTML = "Losses: "+losses;
       }   
 };
 
@@ -81,7 +83,8 @@ document.onkeyup = function(event) {
   
   //below if statement checks if the "formed" answer is equal to the randomWord for that iteration, 
   //if so then call the Start function to restart the game and also increment the win global variable by 1. 
-  //Increase the win value everytime by 1 when a new game restarts
+  //Increase the win value everytime by 1 when a new game restarts. 
+  //Invoking a "Bell" sound effect to indicate that the user has won!
   if (rd_wd === answerArray.join("")){
       game.Startup();
       win++;
@@ -89,9 +92,13 @@ document.onkeyup = function(event) {
       document.getElementById('myAudio').play();
   } 
       
-  //if users attempts unique key/letter values 12 times and still cannot complete the word, then the game restarts 
-  //by invoking the start function.
+  //if user attempts unique key/letter values 12 times and still cannot complete the word, then loss counter goes up by 1 
+  //and the game restarts by invoking the start function.
+  //Invoking a "Sad" sound effect to indicate that the user has lost!
   if (clicks_rmg ===0) {
     game.Startup();
+    losses++;
+    document.getElementById("loss").innerHTML = "Losses: "+losses;
+    document.getElementById('myAudioLoss').play();
   }        
 }
